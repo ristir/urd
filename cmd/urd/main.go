@@ -196,7 +196,9 @@ func usageText() string {
 	}
 
 	var b strings.Builder
-	b.WriteString("urd - history search for zsh that rewrites your prompt\n\nUsage:\n")
+	// The URL is the only way back to the project from a binary that arrived on its own.
+	b.WriteString("urd - history search for zsh that rewrites your prompt\n")
+	b.WriteString("https://github.com/ristir/urd\n\nUsage:\n")
 	for _, l := range helpTable {
 		fmt.Fprintf(&b, "  %-*s  %s\n", width, l.usage(), l.about)
 	}

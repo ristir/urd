@@ -128,6 +128,7 @@ the corpus is the same wherever you are.
 
 ```
 urd - history search for zsh that rewrites your prompt
+https://github.com/ristir/urd
 
 Usage:
   urd                                        reindex if needed, start the daemon, print a summary
