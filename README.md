@@ -16,12 +16,10 @@ So bash gets a hotkey and a dialog instead — see
 ## Install
 
 ```sh
-brew install --formula https://github.com/ristir/urd/releases/latest/download/urd.rb
+brew install ristir/tap/urd
 ```
 
-There is no tap yet, so that installs a formula straight from a URL: it works, but
-`brew upgrade` does not track it — re-run the same command for a new version. Otherwise
-`go install github.com/ristir/urd/cmd/urd@latest`, or take
+Or `go install github.com/ristir/urd/cmd/urd@latest`, or take
 `urd_<version>_<os>_<arch>.tar.gz` from the
 [releases page](https://github.com/ristir/urd/releases) and put `urd` in `$PATH`.
 
@@ -35,14 +33,6 @@ v0.1.0 (ffec288, 2026-08-10T11:33:22Z)
 
 Off a tag it is `git describe` output; a build made without the Makefile falls back to
 Go's build info, which records no build time.
-
-On macOS, upgrade by rename rather than in place: overwriting a running binary's bytes
-invalidates the code signature the kernel cached for that path, and every later run dies
-of `SIGKILL` with nothing but `killed` and exit 137 to go on.
-
-```sh
-cp urd ~/.local/bin/urd.new && mv -f ~/.local/bin/urd.new ~/.local/bin/urd
-```
 
 ## The one manual step
 
