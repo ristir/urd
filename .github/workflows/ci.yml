@@ -10,14 +10,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        include:
+          # The floor the module declares, and what apt ships on 24.04.
+          - os: ubuntu-latest
+            go: "1.22"
+          # Not 1.22 here: its external linker leaves LC_UUID out of the test binary
+          # on the macOS 15 runner, and dyld aborts before a test runs.
+          - os: macos-latest
+            go: stable
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
-          go-version-file: go.mod
+          go-version: ${{ matrix.go }}
 
       # The widget tests drive a real zsh through a pty; the ubuntu runner ships none.
       - if: runner.os == 'Linux'
